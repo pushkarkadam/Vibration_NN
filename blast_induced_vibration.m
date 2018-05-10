@@ -23,8 +23,6 @@ net.trainParam.lr = 0.05;
 net.trainParam.mc = 0.95;
 net.trainParam.epochs = 1000;
 net.trainParam.goal=1e-10;
-%net.trainParam.min_grad = 1e-100;
-%net.trainParam.mu = 1e-100;
 net.trainParam.max_fail = 1000; % Validation check counts
 
 %% Start training the NN
@@ -38,7 +36,7 @@ save step1 net
 a = sim(net, [horizontalDistance(1,31:40);soilThickness(1,31:40);strataThickness(1,31:40);explosiveDistance(1,31:40);cutholeDepth(1,31:40);maxCharge(1,31:40);peripheralCharge(1,31:40);totalCharge(1,31:40)]);
 
 
-%%
+%% Plotting graphs
 
 figure(1)
 plot(a(1,:),'b-o', 'LineWidth',1);
