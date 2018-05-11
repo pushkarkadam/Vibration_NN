@@ -33,15 +33,22 @@ save step1 net
 
 %% Testing the training results on 10 datapoints
 
-a = sim(net, [horizontalDistance(1,31:40);soilThickness(1,31:40);strataThickness(1,31:40);explosiveDistance(1,31:40);cutholeDepth(1,31:40);maxCharge(1,31:40);peripheralCharge(1,31:40);totalCharge(1,31:40)]);
+vibrationNN = sim(net, [horizontalDistance(1,31:40);soilThickness(1,31:40);strataThickness(1,31:40);explosiveDistance(1,31:40);cutholeDepth(1,31:40);maxCharge(1,31:40);peripheralCharge(1,31:40);totalCharge(1,31:40)]);
 
 
 %% Plotting graphs
 
 figure(1)
-plot(a(1,:),'b-o', 'LineWidth',1);
+plot(vibrationNN(1,:),'b-o', 'LineWidth',1);
 hold on
 plot(vibration(1,31:40),'r+-','LineWidth',1);
 hold off
 legend('NN output', 'Actual reading');
 grid
+title('NN Performance');
+
+figure(2)
+error = vibrationNN(1,:)-vibration(1,31:40);
+plot(error,'k-o','LineWidth',1);
+grid
+title('Error plot');
